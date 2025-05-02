@@ -33,7 +33,7 @@ class ReviewInvite
      * @param  int    $refCode
      * @return bool
      */
-    public function sendInvite(string $email, string $firstName, string $lastName, int $delay = 0, int $refCode = 0): bool
+    public function sendInvite(string $email, string $firstName, string $lastName, int $delay = 0, int|string $refCode = 0, ?string $supplier = null, ?string $city = null, ?string $salutation, array $additionalParameters = []): bool
     {
         $curl = curl_init(ReviewInvite::$url);
 
@@ -48,23 +48,33 @@ class ReviewInvite
 
         $postVariables = [
             'location_id'  => $this->config->getLocationId(),
+            'salutation' => 'Dhr',
             'invite_email' => $email,
             'delay'        => $delay,
             'first_name'   => $firstName,
             'last_name'    => $lastName,
             'language'     => $this->config->getLocale(),
             'ref_code'     => $refCode,
+            'supplier'     => $supplier,
+            'salutation'   => $salutation,
+            'city'         => $city,
+            ...$additionalParameters
         ];
+        // Remove any null values
+        $postVariables = array_filter($postVariables, function( $value ) { return !is_null( $value ); } );
 
         curl_setopt($curl, CURLOPT_POST, count($postVariables));
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($postVariables));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        curl_exec($curl);
+        $responseBody = curl_exec($curl);
 
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         curl_close($curl);
-
+        if($status !== 200){
+            var_dump($responseBody);
+        }
         return $status === 200;
     }
 }
