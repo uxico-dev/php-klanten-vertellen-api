@@ -1,4 +1,9 @@
 # php-klanten-vertellen-api
+> [!IMPORTANT]
+> This package is a fork of the original package located at:  
+> https://github.com/kingscode/php-klanten-vertellen-api  
+> Some changes have been made to support more fields on ReviewInvite, as well as fixing warnings in PHP 8.5.
+
 A PHP implementation of the klantenvertellen.nl Api.
 
 This is a PHP package which you can import in any of your PHP projects. 
@@ -7,7 +12,7 @@ The goal of this package is to make it easy to communicate with the KlantenVerte
 ## Installation
 
 ```text
-composer require kingscode/php-klanten-vertellen-api
+composer require uxicodev/php-klanten-vertellen-api
 ```
 
 ## Usage
