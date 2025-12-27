@@ -15,7 +15,7 @@ class ReviewInvite
      * @var string $url
      */
     public static string $url = 'https://www.klantenvertellen.nl/v1/invite/external';
-
+    private ?string $lastError = null;
     /**
      * ReviewInvite constructor.
      *
@@ -71,8 +71,13 @@ class ReviewInvite
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if($status !== 200){
-            var_dump($responseBody);
+            $this->lastError = $responseBody;
         }
         return $status === 200;
+    }
+
+    public function getLastError(): ?string
+    {
+        return $this->lastError;
     }
 }
