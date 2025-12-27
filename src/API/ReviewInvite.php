@@ -26,11 +26,15 @@ class ReviewInvite
     }
 
     /**
-     * @param  string $email
-     * @param  string $firstName
-     * @param  string $lastName
-     * @param  int    $delay
-     * @param  int    $refCode
+     * @param  string  $email
+     * @param  string  $firstName
+     * @param  string  $lastName
+     * @param  int  $delay
+     * @param  int|string  $refCode
+     * @param  string|null  $supplier
+     * @param  string|null  $city
+     * @param  string|null  $salutation Warning, this field is undocumented in the API docs. Use at your own risk.
+     * @param  array  $additionalParameters
      * @return bool
      */
     public function sendInvite(string $email, string $firstName, string $lastName, int $delay = 0, int|string $refCode = 0, ?string $supplier = null, ?string $city = null, ?string $salutation = null, array $additionalParameters = []): bool
