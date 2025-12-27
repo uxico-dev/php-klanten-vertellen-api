@@ -33,7 +33,7 @@ class ReviewInvite
      * @param  int    $refCode
      * @return bool
      */
-    public function sendInvite(string $email, string $firstName, string $lastName, int $delay = 0, int|string $refCode = 0, ?string $supplier = null, ?string $city = null, ?string $salutation, array $additionalParameters = []): bool
+    public function sendInvite(string $email, string $firstName, string $lastName, int $delay = 0, int|string $refCode = 0, ?string $supplier = null, ?string $city = null, ?string $salutation = null, array $additionalParameters = []): bool
     {
         $curl = curl_init(ReviewInvite::$url);
 
