@@ -21,7 +21,7 @@ class ReviewInvite
      *
      * @param  \KingsCode\KlantenVertellen\Config\Repository $config
      */
-    public function __construct(private Repository $config)
+    public function __construct(private readonly Repository $config)
     {
     }
 
@@ -48,7 +48,6 @@ class ReviewInvite
 
         $postVariables = [
             'location_id'  => $this->config->getLocationId(),
-            'salutation' => 'Dhr',
             'invite_email' => $email,
             'delay'        => $delay,
             'first_name'   => $firstName,
