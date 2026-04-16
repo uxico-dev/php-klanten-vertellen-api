@@ -74,12 +74,10 @@ class ReviewInvite
 
         if ($responseBody === false) {
             $this->lastError = curl_error($curl);
-            curl_close($curl);
             return false;
         }
 
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        curl_close($curl);
 
         if ($status !== 200) {
             $this->lastError = $responseBody;

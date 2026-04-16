@@ -97,7 +97,6 @@ class GetReviews
 
         /** @var array $data */
         $data = json_decode($response, true);
-        curl_close($curl);
 
         return $this->mapIntoModels($data);
     }
